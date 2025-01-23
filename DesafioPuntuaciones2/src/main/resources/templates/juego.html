@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head> 
+	    <title>Juega</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<p>Buenos días <span th:text="${usuario.nombre}"></span></p>
+		<div>Añade la puntuación</div>
+		<form action="#" method="post" th:action="@{/juego}" th:object="${puntuacion}">
+			<label for="cifra">Puntuacion: </label><input type="number" name="cifra" id="cifra"/><br/>
+			<input type="submit" name="Enviar"/>
+		</form>
+	</body>
+</html>

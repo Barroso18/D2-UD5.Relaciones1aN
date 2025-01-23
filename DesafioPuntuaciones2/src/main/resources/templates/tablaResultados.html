@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head> 
+	    <title>Juega</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<h1>Tabla puntuaciones</h1>
+		<p th:text="${usuario}"></p>
+		<!--
+		<p th:each="usuario : ${usuarios}" th:text="${usuario}"></p>
+		
+		<table>
+			<thead>
+				<th>Nombre</th>
+				<th>Puntuaciones</th>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${usuarios}">
+					<td th:text="${usuario.nombre}"></td>
+					<td>
+						<p th:each="puntuacion : ${usuario.puntuaciones}" th:text="${puntuacion.cifra}"></p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		-->
+	</body>
+</html>
