@@ -85,6 +85,10 @@ public class UsuarioController {
 	String tablaResultados(HttpServletRequest request, Model modelo) {
 		HttpSession misession = request.getSession();
 		Usuario usuario = (Usuario)misession.getAttribute("usuario");
+		//List<Usuario> usuarios = repositorioUsuario.findByNombre(usuario.getNombre());
+		List<Usuario> usuarios = repositorioUsuario.buscaTodosUsuarios();
+		modelo.addAttribute("usuarios",usuarios);
+		
 		modelo.addAttribute("usuario",usuario);
 		return "tablaResultados";
 	}
