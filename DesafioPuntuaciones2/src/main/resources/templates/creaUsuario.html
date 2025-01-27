@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<div>Crea un nuevo usuario</div>
-		<form action="#" method="post" th:action="@{/creaUsuario}" th:object="${usuario}">
+		<form action="#" method="post" th:action="@{/juego}" th:object="${usuario}">
 			<label for="nombre">Nombre: </label><input type="text" name="nombre" id="nombre"/><br/>
 			<input type="submit" name="Enviar"/>
 		</form>

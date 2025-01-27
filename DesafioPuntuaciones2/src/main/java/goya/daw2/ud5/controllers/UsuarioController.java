@@ -37,20 +37,21 @@ public class UsuarioController {
 	}*/
 	@GetMapping("/")
 	String inicio() {
-		return "redirect:/creaUsuario";
+		//return "redirect:/creaUsuario";
+		return "creaUsuario";
 	}
 	@GetMapping("/creaUsuario")
 	String inicio2() {
 		return "creaUsuario";
 	}
-	@GetMapping("/juego")
+	/*@GetMapping("/juego")
 	String juego2(HttpServletRequest request, Model modelo) {
 		HttpSession misession = request.getSession();
 		Usuario usuario = (Usuario)misession.getAttribute("usuario");
 		modelo.addAttribute("usuario",usuario);
 		return "juego";
-	}
-	@PostMapping("/creaUsuario")
+	}*/
+	@PostMapping("/juego")
 	  public String creaUsuario(@Valid Usuario usuario, Model modelo,HttpServletRequest request) {
 		HttpSession misession = request.getSession(true);
 		//repositorioUsuario.save(usuario);
@@ -68,7 +69,7 @@ public class UsuarioController {
 	    return "juego";
 	  }
 	
-	@PostMapping("/juego")
+	@PostMapping("/tablaResultados")
 	  public String juego(@Valid Puntuacion puntuacion, Model modelo,HttpServletRequest request) {
 		HttpSession misession = request.getSession();
 		Usuario usuario = (Usuario)misession.getAttribute("usuario");
@@ -80,10 +81,14 @@ public class UsuarioController {
 		usuario.anadirPuntuacion(puntuacion);
 		misession.setAttribute("usuario", usuario);
 		repositorioUsuario.save(usuario);
+		List<Usuario> usuarios = repositorioUsuario.buscaTodosUsuarios();
+		modelo.addAttribute("usuarios",usuarios);
+		
+		modelo.addAttribute("usuario",usuario);
 	    //return "redirect:/tablaResultados";
 	    return "tablaResultados";
 	  }
-	@GetMapping("/tablaResultados")
+	/*@GetMapping("/tablaResultados")
 	String tablaResultados(HttpServletRequest request, Model modelo) {
 		HttpSession misession = request.getSession();
 		Usuario usuario = (Usuario)misession.getAttribute("usuario");
@@ -93,7 +98,18 @@ public class UsuarioController {
 		
 		modelo.addAttribute("usuario",usuario);
 		return "tablaResultados";
-	}
+	}*/
+	/*@PostMapping("/tablaResultados")
+	String tablaResultadosP(HttpServletRequest request, Model modelo) {
+		HttpSession misession = request.getSession();
+		Usuario usuario = (Usuario)misession.getAttribute("usuario");
+		//List<Usuario> usuarios = repositorioUsuario.findByNombre(usuario.getNombre());
+		List<Usuario> usuarios = repositorioUsuario.buscaTodosUsuarios();
+		modelo.addAttribute("usuarios",usuarios);
+		
+		modelo.addAttribute("usuario",usuario);
+		return "tablaResultados";
+	}*/
 	public void Borra(String nombre) {
 		List<Usuario> usuarios = repositorioUsuario.findByNombre(nombre);
 		if(usuarios != null) repositorioUsuario.delete(usuarios.get(0));

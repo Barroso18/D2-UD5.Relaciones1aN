@@ -1,6 +1,7 @@
 package goya.daw2.ud5.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,6 +19,9 @@ public class Puntuacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_PUNTUACION")
 	private Long idPuntuacion;
+	
+	@Column(name = "FECHA")
+	private Date fecha;
 	
 	int cifra;
 	
@@ -49,9 +53,17 @@ public class Puntuacion implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 	@Override
 	public String toString() {
-		return "Puntuacion [idPuntuacion=" + idPuntuacion + ", cifra=" + cifra + ", usuario=" + usuario.getNombre() + "]";
+		return "Puntuacion [idPuntuacion=" + idPuntuacion + ", fecha=" + fecha + ", cifra=" + cifra + ", usuario="
+				+ usuario.getNombre() + "]";
 	}
 	
 }
