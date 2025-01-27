@@ -64,7 +64,8 @@ public class UsuarioController {
 			
 			}
 			misession.setAttribute("usuario",usuario);
-	    return "redirect:/juego";
+	    //return "redirect:/juego";
+	    return "juego";
 	  }
 	
 	@PostMapping("/juego")
@@ -79,7 +80,8 @@ public class UsuarioController {
 		usuario.anadirPuntuacion(puntuacion);
 		misession.setAttribute("usuario", usuario);
 		repositorioUsuario.save(usuario);
-	    return "redirect:/tablaResultados";
+	    //return "redirect:/tablaResultados";
+	    return "tablaResultados";
 	  }
 	@GetMapping("/tablaResultados")
 	String tablaResultados(HttpServletRequest request, Model modelo) {
