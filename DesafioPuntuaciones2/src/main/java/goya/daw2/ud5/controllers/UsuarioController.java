@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import goya.daw2.ud5.model.Usuario;
 import goya.daw2.ud5.model.Puntuacion;
+import goya.daw2.ud5.repositories.RepositorioPuntuacion;
 import goya.daw2.ud5.repositories.RepositorioUsuario;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -20,7 +21,8 @@ import jakarta.validation.Valid;
 public class UsuarioController {
 	@Autowired
 	RepositorioUsuario repositorioUsuario;
-	
+	@Autowired
+	RepositorioPuntuacion repositorioPuntuacion;
 	/*@GetMapping("/creaUsuario")
 	String Crea() {
 		Usuario david = new Usuario("David Barroso");
@@ -82,6 +84,8 @@ public class UsuarioController {
 		misession.setAttribute("usuario", usuario);
 		repositorioUsuario.save(usuario);
 		List<Usuario> usuarios = repositorioUsuario.buscaTodosUsuarios();
+		List<Puntuacion> puntuaciones =repositorioPuntuacion.buscaTodasPuntuaciones();
+		modelo.addAttribute("puntuaciones",puntuaciones);
 		modelo.addAttribute("usuarios",usuarios);
 		
 		modelo.addAttribute("usuario",usuario);
