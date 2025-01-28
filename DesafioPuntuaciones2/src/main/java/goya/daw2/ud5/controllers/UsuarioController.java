@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import goya.daw2.ud5.model.Usuario;
@@ -24,7 +25,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
-public class UsuarioController implements WebMvcConfigurer{
+public class UsuarioController{
 	@Autowired
 	RepositorioUsuario repositorioUsuario;
 	@Autowired
@@ -80,14 +81,13 @@ public class UsuarioController implements WebMvcConfigurer{
 	@PostMapping("/juego")
 	//public String juego(@RequestParam(name="cifra",required=false) Integer cifra,@RequestParam(required = false) LocalDate fecha,
 			  //Puntuacion puntuacion, Model modelo,HttpServletRequest request,BindingResult bindingResult) {
-	  public String juego(@RequestParam(name="cifra",required=false) Integer cifra,@RequestParam(name="fecha",required=false) LocalDate fecha,HttpServletRequest request, 
-			  Model modelo) {
-		Puntuacion puntuacion = new Puntuacion(cifra);
-		puntuacion.setFecha(fecha);
-		
+	  public String juego(@RequestParam(name="cifra",required=false) Integer cifra,@RequestParam(name="fecha",required=false) LocalDate fecha, 
+			  Model modelo,HttpServletRequest request) {
 		/*if (bindingResult.hasErrors()) {
 			return "juego";
 		}else {*/
+			Puntuacion puntuacion = new Puntuacion(cifra);
+			puntuacion.setFecha(fecha);
 			HttpSession misession = request.getSession();
 			Usuario usuario = (Usuario)misession.getAttribute("usuario");
 			//Usuario usuario2 = usuario.devuelveUsuario(repositorioUsuario,usuario.getNombre());

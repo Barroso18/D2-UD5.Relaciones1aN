@@ -21,9 +21,8 @@ public class Puntuacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_PUNTUACION")
 	private Long idPuntuacion;
-	@Column(name = "FECHA",nullable = true)
+	@Column(name = "FECHA")//@Column(name = "FECHA",nullable = true)
 	private LocalDate fecha;
-	@NotNull
 	@Column(name = "CIFRA")
 	Integer cifra;
 	
