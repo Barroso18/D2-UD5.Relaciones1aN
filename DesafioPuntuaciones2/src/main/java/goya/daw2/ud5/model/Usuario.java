@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "USUARIO")
 public class Usuario implements Serializable{
@@ -20,6 +21,7 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID_USUARIO")
 	private Long idUsuario;
+	@NotNull
 	String nombre;
 	
 	@OneToMany(

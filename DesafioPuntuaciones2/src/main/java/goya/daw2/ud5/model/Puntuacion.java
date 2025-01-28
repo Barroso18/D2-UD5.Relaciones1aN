@@ -2,6 +2,7 @@ package goya.daw2.ud5.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PUNTUACION")
@@ -19,18 +21,23 @@ public class Puntuacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_PUNTUACION")
 	private Long idPuntuacion;
-	
-	@Column(name = "FECHA")
-	private Date fecha;
-	
-	int cifra;
+	@Column(name = "FECHA",nullable = true)
+	private LocalDate fecha;
+	@NotNull
+	@Column(name = "CIFRA")
+	Integer cifra;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
 	private Usuario usuario;
-	public Puntuacion(int cifra) {
+	public Puntuacion(Integer cifra) {
 		super();
 		this.cifra = cifra;
+	}
+	public Puntuacion(Integer cifra,LocalDate fecha) {
+		super();
+		this.cifra = cifra;
+		this.fecha = fecha;
 	}
 	public Puntuacion() {
 		
@@ -44,7 +51,7 @@ public class Puntuacion implements Serializable {
 	public int getCifra() {
 		return cifra;
 	}
-	public void setCifra(int cifra) {
+	public void setCifra(Integer cifra) {
 		this.cifra = cifra;
 	}
 	public Usuario getUsuario() {
@@ -54,10 +61,10 @@ public class Puntuacion implements Serializable {
 		this.usuario = usuario;
 	}
 	
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	@Override

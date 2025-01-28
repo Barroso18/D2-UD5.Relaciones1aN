@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h1>Tabla puntuaciones</h1>
-		<p th:text="${usuario}"></p>
+		<!--<p th:text="${usuario}"></p>-->
 		
 		<!--
 			<p th:each="usuario : ${usuarios}" th:text="${usuario}"></p>
@@ -18,6 +18,7 @@
 				<th>Nombre</th>
 				<th>Puntuaciones</th>
 				-->
+		<h2>Todas las puntuaciones</h2>
 		<table class="table table-hover table-striped">
            	<thead class="table-dark">
 	               <tr>
@@ -44,6 +45,61 @@
                </tr>
 			</tbody>
 		</table>
+		<h2>Puntuaciones de mayor a menor</h2>
+		<table class="table table-hover table-striped">
+		           	<thead class="table-dark">
+			               <tr>
+			                   <th scope="col">#</th>
+			                   <th scope="col">Nombre</th>
+			                   <th scope="col">Puntuacion</th>
+			                   <th scope="col">Fecha</th>
+			               </tr>
+					</thead>
+					<tbody>
+						<!--
+						<tr th:each="usuario : ${usuarios}">
+							<td th:text="${usuario.nombre}"></td>
+							<td>
+								<p th:each="puntuacion : ${usuario.puntuaciones}" th:text="${puntuacion.cifra}"></p>
+							</td>
+						</tr>
+						-->
+						<tr th:each="puntuacion : ${puntuacionesbyCifra}">
+		                   <th scope="row" th:text="${puntuacion.idPuntuacion}"></th>
+		                   <td th:text="${puntuacion.usuario.nombre}"></td>
+		                   <td th:text="${puntuacion.cifra}"></td>
+		                   <td th:text="${puntuacion.fecha}"></td>
+		               </tr>
+					</tbody>
+			</table>
+			
+			<h2>Puntuaciones de un jugador</h2>
+			<table class="table table-hover table-striped">
+			           	<thead class="table-dark">
+				               <tr>
+				                   <th scope="col">#</th>
+				                   <th scope="col">Nombre</th>
+				                   <th scope="col">Puntuacion</th>
+				                   <th scope="col">Fecha</th>
+				               </tr>
+						</thead>
+						<tbody>
+							<!--
+							<tr th:each="usuario : ${usuarios}">
+								<td th:text="${usuario.nombre}"></td>
+								<td>
+									<p th:each="puntuacion : ${usuario.puntuaciones}" th:text="${puntuacion.cifra}"></p>
+								</td>
+							</tr>
+							-->
+							<tr th:each="puntuacion : ${puntuacionesJugador}">
+			                   <th scope="row" th:text="${puntuacion.idPuntuacion}"></th>
+			                   <td th:text="${puntuacion.usuario.nombre}"></td>
+			                   <td th:text="${puntuacion.cifra}"></td>
+			                   <td th:text="${puntuacion.fecha}"></td>
+			               </tr>
+						</tbody>
+				</table>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
